@@ -1,0 +1,48 @@
+#include <stdio.h>
+// Este es el trabajo final de Programacion para primer año en Tecnicas Digitales del ISET 57 de Rosario
+// Javier Carlucci, 22 de Octubre de 2024
+// La consigna es hacer un programa en C donde el usuario ingrese el promedio de precipitaciones de todo un año en tres regiones
+// Las regiones son SUR, CENTRO Y NORTE. Luego el programa mostrará el promedio de lluvias en el CENTRO, el mes con menos lluvias del sur
+// Y el mes con mas lluvias del norte.
+#define MESES 12 
+int main(void) {
+    float centro[MESES], norte[MESES], sur[MESES];
+    float suma_centro = 0, promcentro;
+    int maxnorte = 0, minsur = 0;
+    
+    // Ingresar los datos de la región Centro
+    printf("Ingrese el promedio mensual de lluvias para la region Centro:\n");
+    for(int i = 0; i < MESES; i++) {
+        printf("Mes %d: ", i + 1);
+        scanf("%f", &centro[i]);
+        suma_centro += centro[i]; 
+    }
+    // Calculo del promedio de lluvias para la región Centro
+    promcentro = suma_centro / MESES;
+    printf("El promedio de lluvias de la region Centro es: %.2f\n", promcentro);
+
+    // Ingresar los datos de la región Norte
+    printf("\nIngrese el promedio mensual de lluvias para la region Norte:\n");
+    for(int i = 0; i < MESES; i++) {
+        printf("Mes %d: ", i + 1);
+        scanf("%f", &norte[i]);
+        // Mes de mayores precipitaciones
+        if(norte[i] > norte[maxnorte]) {
+            maxnorte = i;
+        }
+    }
+    printf("El mes de mayor precipitación en la region Norte es: Mes %d\n", maxnorte + 1);
+
+    // Ingresar los datos de la región Sur
+    printf("\nIngrese el promedio mensual de lluvias para la region Sur:\n");
+    for(int i = 0; i < MESES; i++) {
+        printf("Mes %d: ", i + 1);
+        scanf("%f", &sur[i]);
+        // Mes de menores precipitaciones
+        if(sur[i] < sur[minsur]) {
+            minsur = i;
+        }
+    }
+    printf("El mes de menor precipitacion en la region Sur es: Mes %d\n", minsur + 1);
+
+    return 0;
